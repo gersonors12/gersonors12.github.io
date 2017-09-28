@@ -8,6 +8,12 @@ body {
    font: italic 200% futura;
   }
 
+  h2 {
+   color:  #FE642E;
+   text-align: left;
+   font: italic 200% futura;
+  }
+
   p {
    padding: 20px;
    color: #DAF7A6;
