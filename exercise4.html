@@ -1,0 +1,80 @@
+
+int count = 500;  
+Car[] cars;    
+
+Lambo f;
+
+void setup() {
+  size(1200, 100);
+  f = new Lambo();
+  cars = new Car[count];
+  for (int i = 0; i < cars.length; i++) {
+    cars[i] = new Car(color(random(20), random(200), random(2505)), random(1000), 20 + 10*i);
+  }
+}
+
+void draw() {
+  background(200);
+  f.keyPressed();
+  f.move();
+  for (int i = 0; i < cars.length; i++){
+    cars[i].drive();
+    cars[i].update();
+  }
+}
+
+class Lambo  {
+  float yPos = height/2;
+  float xPos = width/2;
+  Lambo() {
+  }
+  void keyPressed(){
+    if (key == 'w'){
+      yPos -= 2;
+      if (yPos + 15 < 0){
+        yPos = height + 15;
+      }
+    }
+    if (key == 's'){
+      yPos += 2;
+      if (yPos - 15 > height){
+        yPos = -15;
+      }
+    }
+  }
+  void move() {
+    
+  }
+}
+
+class Car{
+  // local variables (= states)
+  color clr;
+  float sp;
+  float xPos;
+  float yPos;
+  int lng;
+  // constructor (like setup, no 'void' before)
+ Car(color tempClr, float tempSp, float tempYPos){
+    clr = tempClr;
+    sp = tempSp;
+    yPos = tempYPos;
+    lng = int(random(50, 180));
+  }
+ void drive(){
+    xPos += sp + random(-1.5, 2);
+    if (xPos > width) {
+      xPos = 0 -lng-40;
+      clr = color(random(255), random(255), random(255));
+      sp = random(0.5, 5);
+      lng = int(random(30, 150));
+    }
+    yPos += random(-0.5, 0.5);
+  }
+  void update() {
+    fill(255, 64);
+    fill(clr);
+    noStroke();
+    rect(xPos, yPos, lng, 25, 5);
+  }
+}
